@@ -1,0 +1,51 @@
+{% extends "../base.html" %} 
+{% block title %}been - {{user.username}} visits{% endblock %}
+{% block content %}
+
+
+<h1 class="no-margin titlev2">Your visits</h1>
+<h3 class="no-margin title-2">Countries</h3>
+
+<div class="wrapper">
+    {% for country in countries %}
+            <div class="item">
+                <a href="{% url 'core:view_visit' country.slug %}">
+                    <div class="image-container">
+                        <img src="{{country.landscape.url}}" alt="{{country.name}} landscape" class="landscape">
+                        <img src="{{ country.flag.url }}" alt="" class="flag">
+                    </div>
+                    <p>{{ country.name }}</p>
+                </a>
+            </div>
+    {% endfor %}
+</div>
+
+<h3 class="no-margin title-2">Cities</h3>
+<div class="wrapper">
+    {% for city in cities %}
+            <div class="item">
+                <a href="{% url 'core:view_visit' city.country.slug %}">
+                    <div class="image-container">
+                        <img src="{{city.landscape.url}}" alt="{{city.name}} landscape" class="landscape">
+                    </div>
+                    <p>{{ city.name }}</p>
+                </a>
+            </div>
+    {% endfor %}
+</div>
+
+<h3 class="no-margin title-2">Airports</h3>
+<div class="wrapper">
+    {% for airport in airports %}
+            <div class="item">
+                <a href="{% url 'core:view_visit' airport.city.country.slug %}">
+                    <div class="image-container">
+                        <img src="{{airport.landscape.url}}" alt="{{airport.name}} landscape" class="landscape">
+                    </div>
+                    <p>{{ airport.name }}</p>
+                </a>
+            </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

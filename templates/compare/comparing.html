@@ -1,0 +1,78 @@
+{% extends '../base.html' %}
+{% block title %}Comparing with {{profile_other.user.username}}{% endblock %}
+{% block content %}
+
+
+<div class="compare-container">
+    <div class="profile">
+        <div class="avatar-username">
+            <img src="{{profile_me.avatar.url}}" alt="" class="avatar">
+            <h3 class="titlev2 no-margin">{{profile_me.user.username|title}}</h3>
+            <div class="stats">
+                <div class="world-percentage">
+                    <h3 class="no-margin">World</h3>
+                    <p class="no-margin">{{profile_me.world_percentage}}%</p>
+                </div>
+                <div class="stat">
+                    <div>
+                        <h3 class="no-margin">Continents</h3>
+                        <p class="no-margin">{{profile_me.total_continents}}</p>
+                    </div>
+                    <div>
+                        <h3 class="no-margin">Countries</h3>
+                        <p class="no-margin">{{profile_me.total_countries_visited}}</p>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div>
+                        <h3 class="no-margin">Cities</h3>
+                        <p class="no-margin">{{profile_me.total_cities}}</p>
+                    </div>
+                    <div>
+                        <h3 class="no-margin">Airports</h3>
+                        <p class="no-margin">{{profile_me.total_airports}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="profile">
+        <div class="avatar-username">
+            <img src="{{profile_other.avatar.url}}" alt="" class="avatar">
+            <h3 class="titlev2 no-margin">{{profile_other.user.username|title}}</h3>
+            {% if not are_friends %}
+                <a href="{% url 'account:add_friend' profile_other.slug %}">Add as a friend</a>
+            {% endif %}
+            <div class="stats">
+                <div class="world-percentage">
+                    <h3 class="no-margin">World</h3>
+                    <p class="no-margin">{{profile_other.world_percentage}}%</p>
+                </div>
+                <div class="stat">
+                    <div>
+                        <h3 class="no-margin">Continents</h3>
+                        <p class="no-margin">{{profile_other.total_continents}}</p>
+                    </div>
+                    <div>
+                        <h3 class="no-margin">Countries</h3>
+                        <p class="no-margin">{{profile_other.total_countries_visited}}</p>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div>
+                        <h3 class="no-margin">Cities</h3>
+                        <p class="no-margin">{{profile_other.total_cities}}</p>
+                    </div>
+                    <div>
+                        <h3 class="no-margin">Airports</h3>
+                        <p class="no-margin">{{profile_other.total_airports}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

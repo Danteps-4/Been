@@ -1,0 +1,85 @@
+{% extends "../base.html" %} 
+{% block title %}been profile: {{user.username}}{% endblock %}
+{% block content %}
+
+
+<div class="profile">
+    <div class="avatar-username">
+        <img src="{{avatar.avatar.url}}" alt="" class="avatar">
+        <h3 class="titlev2 no-margin">{{user.username|title}}</h3>
+        <a href="{% url 'account:logout' %}" class="btn btn-danger">Logout</a>
+    </div>
+    <div class="info-countries">
+        <div class="">
+            <h3 class="no-margin">World</h3>
+            <p class="no-margin">{{world_percentage}}%</p>
+        </div>
+        <div class="">
+            <h3 class="no-margin">Continents</h3>
+            <p class="no-margin">{{num_continents}}</p>
+        </div>
+        <div class="">
+            <h3 class="no-margin">Countries</h3>
+            <p class="no-margin">{{num_countries}}</p>
+        </div>
+        <div class="">
+            <h3 class="no-margin">Cities</h3>
+            <p class="no-margin">{{num_cities}}</p>
+        </div>
+        <div class="">
+            <h3 class="no-margin">Airports</h3>
+            <p class="no-margin">{{num_airports}}</p>
+        </div>
+    </div>
+
+    <div class="card-container-2">
+        <div class="card-2">
+            <a href="{% url 'account:profile_view_visits' %}">
+                <div class="card-body">
+                    <div class="info">
+                        <div class="icon">
+                            <i class="fa-solid fa-map-pin"></i>
+                        </div>
+                        <h3 class="no-margin">View your visits</h3>
+                    </div>
+                    <div class="number">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="card-2">
+            <a href="{% url 'account:view_friends' %}">
+                <div class="card-body">
+                    <div class="info">
+                        <div class="icon">
+                            <i class="fa-solid fa-user-group"></i>
+                        </div>
+                        <h3 class="no-margin">Your friends</h3>
+                    </div>
+                    <div class="number">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="card-2">
+            <a href="{% url 'account:profile_edit' %}">
+                <div class="card-body">
+                    <div class="info">
+                        <div class="icon">
+                            <i class="fa-solid fa-pen"></i>
+                        </div>
+                        <h3 class="no-margin">Edit your profile</h3>
+                    </div>
+                    <div class="number">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

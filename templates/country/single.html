@@ -1,0 +1,101 @@
+{% extends '../base.html' %}
+{% block title %}{{country.name}}{% endblock %}
+{% block content %}
+
+<div class="title-add-visit">
+    <h1 class="no-margin titlev2">{{country.name}}</h1>
+    <a href="{% url 'core:add_visit_country' country.slug %}" class="add-visit">+</a>
+</div>
+
+
+<div class="country-single">
+    <div class="top-info">
+        <div class="landscape-container">
+            <img src="{{country.landscape.url}}" alt="" class="landscape">
+        </div>
+        <div class="facts">
+            <div class="fact">
+                <p class="no-margin">Flag</p>
+                <img src="{{country.flag.url}}" alt="{{country.name}}" class="flag">
+            </div>
+            <div class="fact">
+                <p class="no-margin">Continent</p>
+                <h4 class="no-margin">{{country.continent}}</h4>
+            </div>
+            <div class="fact">
+                <p class="no-margin">Capital</p>
+                <h4 class="no-margin">Buenos Aires</h4>
+            </div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    {{ point|json_script:"point_json" }}
+
+    <div class="down-info">
+        <div class="card">
+            <div class="icon green">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <p class="no-margin">{{ country.population }}</p>
+        </div>
+        <div class="card">
+            <div class="icon red">
+                <i class="fa-solid fa-maximize"></i>
+            </div>
+            <p class="no-margin">{{ country.territory }} km²</p>
+        </div>
+        <div class="card">
+            <div class="icon blue">
+                <i class="fa-solid fa-link"></i>
+            </div>
+            <p class="no-margin">{{ country.domain }}</p>
+        </div>
+        <div class="card">
+            <div class="icon yellow">
+                <i class="fa-solid fa-coins"></i>
+            </div>
+            <p class="no-margin">{{ country.currency }}</p>
+        </div>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+<div class="card-container">
+    <div class="card">
+        <a href="">
+            <div class="card-body">
+                <div class="info">
+                    <div class="icon">
+                        <i class="fa-solid fa-city"></i>
+                    </div>
+                    <h3 class="no-margin">View cities</h3>
+                </div>
+                <div class="number">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="card">
+        <a href="">
+            <div class="card-body">
+                <div class="info">
+                    <div class="icon">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <h3 class="no-margin">View airports</h3>
+                </div>
+                <div class="number">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

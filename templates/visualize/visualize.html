@@ -1,0 +1,12 @@
+{% extends '../base.html' %}
+{% block title %}Visualize{% endblock %}
+{% block content %}
+
+<h1 class="titlev2 no-margin">Visualize</h1>
+
+<div id="map2"></div>
+
+{{ countries|json_script:"countries_json" }}
+
+
+{% endblock %}

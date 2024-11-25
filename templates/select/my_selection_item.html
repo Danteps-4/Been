@@ -1,0 +1,71 @@
+{% extends '../base.html' %}
+{% block title %}My {{selection_item}}{% endblock %}
+{% block content %}
+
+<div class="search">
+    <h1 class="title no-margin">My {{selection_item}}</h1>
+    <form action="" method="GET" class="search-bar">
+        {{ search_form.q }}
+        <button type="submit" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</div>
+
+{% if selection_item == "countries" %}
+{% for country in countries %}
+<div class="select-card-container">
+    <a href="{% url 'explore:country_single' country.slug %}">
+        <div class="select-card">
+            <div class="info">
+                <img src="{{country.flag.url}}" alt="{{country.name}}">
+                <h3>{{country.name}}</h3>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </a>
+</div>
+{% endfor %}
+{% elif selection_item == "continents" %}
+{% for continent in continents %}
+<div class="select-card-container">
+    <a href="{% url 'explore:continent_single' continent.slug %}">
+        <div class="select-card">
+            <div class="info">
+                <img src="" alt="{{continent.name}}">
+                <h3>{{continent.name}}</h3>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </a>
+</div>
+{% endfor %}
+{% elif selection_item == "cities" %}
+{% for city in cities %}
+<div class="select-card-container">
+    <a href="{% url 'explore:city_single' city.slug %}">
+        <div class="select-card">
+            <div class="info">
+                <img src="" alt="{{city.name}}">
+                <h3>{{city.name}}</h3>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </a>
+</div>
+{% endfor %}
+{% elif selection_item == "airports" %}
+{% for airport in airports %}
+<div class="select-card-container">
+    <a href="{% url 'explore:airport_single' airport.slug %}">
+        <div class="select-card">
+            <div class="info">
+                <img src="" alt="{{airport.name}}">
+                <h3>{{airport.name}}</h3>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </a>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends '../base.html' %}
+{% block title %}{{airport.name}}{% endblock %}
+{% block content %}
+
+<div class="title-add-visit">
+    <h1 class="no-margin titlev2">{{airport.name}}</h1>
+    <a href="{% url 'core:add_visit_airport' airport.slug %}" class="add-visit">+</a>
+</div>
+
+{% endblock %}

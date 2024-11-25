@@ -1,0 +1,34 @@
+{% extends '../base.html' %}
+{% block title %}Explore{% endblock %}
+{% block content %}
+<div class="search">
+    <h1 class="title no-margin">Explore</h1>
+    <form action="" method="GET" class="search-bar">
+        {{ search_form.q }}
+        <button type="submit" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</div>
+
+{% if continents %}
+    {% for continent in continents %}
+        <h2 class="title-2">{{ continent.name }}</h2>
+
+            <div class="wrapper">
+                {% for country in continent.filtered_countries %}
+                    <div class="item">
+                        <a href="{% url 'explore:country_single' country.slug %}">
+                            <div class="image-container">
+                                <img src="{{country.landscape.url}}" alt="{{country.name}} landscape" class="landscape">
+                                <img src="{{ country.flag.url }}" alt="" class="flag">
+                            </div>
+                            <p>{{ country.name }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+    {% endfor %}
+{% else %}
+    <p class="no-margin error">There are no countries that match with "{{ request.GET.q }}".</p>
+{% endif %}
+
+{% endblock %}

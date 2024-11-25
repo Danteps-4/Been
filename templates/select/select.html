@@ -1,0 +1,92 @@
+{% extends '../base.html' %}
+{% block title %}Select{% endblock %}
+{% block content %}
+<h1 class="title no-margin">Select</h1>
+
+<div class="progress-container">
+    <h2 class="title no-margin">In Total</h2>
+    <div class="progress-info">
+        <div class="visited-percentage">
+            <span id="percentage">0%</span>
+            <p class="no-margin">World</p>
+        </div>
+        <div class="progress-circle">
+            
+        </div>
+        <div class="visited-countries" data-visited-countries="{{num_countries}}">
+            <span id="countries-visited">0</span> 
+            <p class="no-margin">Countries</p>
+        </div>
+    </div>
+    <p class="total-countries">Out of 195 Countries</p>
+</div>
+
+
+<div class="card-container">
+    <div class="card">
+        <a href="{% url 'select:my_selection_item' 'countries' %}">
+            <div class="card-body">
+                <div class="info">
+                    <div class="icon">
+                        <i class="fa-solid fa-map-pin"></i>
+                    </div>
+                    <h3 class="no-margin">My countries</h3>
+                </div>
+                <div class="number">
+                    <p class="no-margin">{{num_countries}}</p>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="card">
+        <a href="{% url 'select:my_selection_item' 'continents' %}">
+            <div class="card-body">
+                <div class="info">
+                    <div class="icon">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+                    <h3 class="no-margin">My continents</h3>
+                </div>
+                <div class="number">
+                    <p class="no-margin">{{num_continents}}</p>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="card">
+        <a href="{% url 'select:my_selection_item' 'cities' %}">
+            <div class="card-body">
+                <div class="info">
+                    <div class="icon">
+                        <i class="fa-solid fa-city"></i>
+                    </div>
+                    <h3 class="no-margin">My cities</h3>
+                </div>
+                <div class="number">
+                    <p class="no-margin">{{num_cities}}</p>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="card">
+        <a href="{% url 'select:my_selection_item' 'airports' %}">
+            <div class="card-body">
+                <div class="info">
+                    <div class="icon">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <h3 class="no-margin">My airports</h3>
+                </div>
+                <div class="number">
+                    <p class="no-margin">{{num_airports}}</p>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

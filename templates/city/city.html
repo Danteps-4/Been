@@ -1,0 +1,28 @@
+{% extends '../base.html' %}
+{% block title %}{{city.name}}{% endblock %}
+{% block content %}
+
+<div class="title-add-visit">
+    <h1 class="no-margin titlev2">{{city.name}}</h1>
+    <a href="{% url 'core:add_visit_city' city.slug %}" class="add-visit">+</a>
+</div>
+
+<div class="card-container">
+    <div class="card">
+        <a href="">
+            <div class="card-body">
+                <div class="info">
+                    <div class="icon">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <h3 class="no-margin">View airports</h3>
+                </div>
+                <div class="number">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

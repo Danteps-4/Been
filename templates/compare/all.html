@@ -1,0 +1,69 @@
+{% extends '../base.html' %}
+{% block title %}Compare with your friends{% endblock %}
+{% block content %}
+
+
+
+<div class="search">
+    <h1 class="title no-margin">Compare</h1>
+    <form action="" method="GET" class="search-bar">
+        {{ search_form.q }}
+        <button type="submit" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</div>
+
+{% if profiles %}
+    {% for profile in profiles %}
+    <div class="select-card-container single-profile">
+        <a href="{% url 'compare:compare' profile.slug %}">
+            <div class="select-card">
+                <div class="info">
+                    <img src="{{profile.avatar.url}}" alt="{{profile.user.username}}">
+                    <h3>{{profile.user.username}}</h3>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+    <div class="load-more-btn" id="btn">
+        <button class="btn" type="button" onclick="loadMoreProfiles()">Load more</button>
+    </div>
+{% else %}
+    <p class="no-margin error">There are no users that match with "{{ request.GET.q }}".</p>
+{% endif %}
+
+<script>
+    let offset = 1
+
+    function loadMoreProfiles() {
+        fetch(`/compare/load-more-profiles?offset=${offset}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.profiles.length > 0) {
+                    data.profiles.forEach(profile => {
+                        const profileCard = `
+                            <div class="select-card-container single-profile">
+                                <a href="/compare/${profile.slug}">
+                                    <div class="select-card">
+                                        <div class="info">
+                                            <img src="${profile.avatar_url}" alt="${profile.username}">
+                                            <h3>${profile.username}</h3>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                        document.getElementById('btn').insertAdjacentHTML('beforebegin', profileCard);
+                    });
+                    offset += 1;  // Actualizamos el offset para la siguiente carga
+                } else {
+                    document.getElementById("btn").style.display = "none";     // Ocultar botón de "Load more"
+                }
+            })
+            .catch(error => console.log("Error:", error));
+    }
+</script>
+
+{% endblock %}

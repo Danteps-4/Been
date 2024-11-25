@@ -1,0 +1,28 @@
+{% extends "../base.html" %} 
+{% block title %}Your friends{% endblock %}
+{% block content %}
+
+
+<h1 class="no-margin titlev2">Your friends</h1>
+
+{% if friends %}
+    {% for friend in friends %}
+    <div class="select-card-container">
+        <a href="{% url 'compare:compare' friend.profile.slug %}">
+            <div class="select-card">
+                <div class="info">
+                    <img src="{{friend.profile.avatar.url}}" alt="{{friend.username}}">
+                    <h3>{{friend.username}}</h3>
+                </div>
+                <a href="{% url 'account:delete_friend' friend.profile.slug %}" class="btn btn-danger">Delete friend</a>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+{% else %}
+    <p class="no-margin error">You do not have any friends. Try adding some!</p>
+{% endif %}
+
+
+{% endblock %}

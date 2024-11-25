@@ -1,0 +1,13 @@
+{% extends '../base.html' %}
+{% block title %}Add visit {{country.name}}{% endblock %}
+{% block content %}
+
+<h1 class="titlev2 no-margin">Add visit</h1>
+
+<form action="" method="POST" class="add-visit">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn" type="submit">Add visit</button>
+</form>
+
+{% endblock %}

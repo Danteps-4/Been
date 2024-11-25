@@ -1,0 +1,17 @@
+{% extends '../base.html' %}
+{% block title %}Visit {{country.name}}{% endblock %}
+{% block content %}
+
+<h1 class="titlev2 no-margin">Visits to {{country.name}}</h1>
+
+<div class="view-visit">
+    {% for visit in visits %}
+        <div class="card">
+            <p class="no-margin">City: {{visit.city}}</p>
+            <p class="no-margin">Airport: {{visit.airport}}</p>
+            <p class="no-margin">Date visited: {{visit.date}}</p>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
